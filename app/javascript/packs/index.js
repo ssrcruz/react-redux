@@ -4,22 +4,18 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from '../reducers'
+import App from '../components/App'
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
-
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: React.PropTypes.string
-}
+let store = createStore(todoApp)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
   )
 })
